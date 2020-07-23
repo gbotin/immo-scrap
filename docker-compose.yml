@@ -1,0 +1,29 @@
+version: "2"
+
+services:
+  nginx:
+    build: .docker/nginx
+    # volumes_from:
+    #   - php
+    volumes:
+      - ./.docker/cache/nginx/logs:/var/log/nginx
+      - ./:/var/www/html
+    # links:
+    #   - php
+    ports:
+      - 80:80
+
+  # php:
+  #   build: .docker/php
+  #   expose:
+  #     - 9001
+  #   ports:
+  #     - 9000:9000
+  #   volumes:
+  #     - .docker/cache/composer:/var/www/.composer/cache
+  #     - ./:/var/www/html
+  #   links:
+  #     - db
+  #     - mailhog
+  #   environment:
+  #      MH_SENDMAIL_SMTP_ADDR: 'mailhog:1025'sz
